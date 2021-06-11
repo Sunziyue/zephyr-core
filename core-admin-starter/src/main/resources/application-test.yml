@@ -1,0 +1,39 @@
+logging:
+  path: ${user.home}/logs/jjy
+  level.root: INFO
+  level.io.jjy: ${JJY_LOG_LEVEL:INFO}
+  level.io.terminus: ${TERMINUS_LOG_LEVEL:INFO}
+
+spring:
+  application:
+    name: order-admin-starter
+
+server:
+  context-path: /
+  port: 8082
+
+security:
+  basic:
+    enabled: false
+
+terminus:
+  swagger:
+    enable: true
+    title: "HIBOOS_ORDER_API"
+    group-name: "HIBOOS"
+    version: "1.0-SNAPSHOT"
+
+dubbo:
+  application:
+    name: order-admin-dubbo
+  registry:
+    id: order-admin
+    address: zookeeper://${ZOOKEEPER_HOST:10.99.196.156}:${ZOOKEEPER_PORT:2181}
+  provider:
+    retries: 0
+  consumer:
+    check: false
+    timeout: 6000
+  protocol:
+    name: dubbo
+    port: 26880

@@ -1,0 +1,72 @@
+logging:
+  path: ${user.home}/logs/jjy
+  level.root: INFO
+  level.io.jjy: ${JJY_LOG_LEVEL:INFO}
+  level.io.terminus: ${TERMINUS_LOG_LEVEL:INFO}
+
+spring:
+  application:
+    name: order-center
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:192.168.199.191}:${MYSQL_PORT:3306}/${MYSQL_DATABASES:sap-drp-uat}?useUnicode=true&characterEncoding=UTF8&useSsl=false
+    username: ${MYSQL_USERNAME:sap}
+    password: ${MYSQL_PASSWORD:sap@#321}
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    tomcat:
+      # 空闲连接检查
+      time-between-eviction-runs-millis: 6000
+      validation-query: SELECT 1
+      # 检查空闲连接是否收回
+      test-while-idle: true
+      # 从连接池取出连接进行检查
+      test-on-borrow: true
+      # 归还检查，关闭就行
+      test-on-return: false
+      initial-size: 5
+      min-idle: 10
+      max-active: 50
+      max-wait: 60000
+      # 配置一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: >
+    com.jjy.ip.hiboos.order.server.model
+
+terminus:
+  rocketmq:
+    nameServerAddress: ${ROCKETMQ_NAMESRV_HOST:10.99.242.43}:${ROCKETMQ_NAMESRV_PORT:9876}
+    producerGroup: ${MQ_GROUP:order-producer}
+
+dynamicDataSource:
+  provider: ${DYNAMIC_DATASOURCE_PROVIDER:io.jjy.platform.common.datasource.provider.ConfigurableDataSourceProvider}
+  groupKey: ${DYNAMIC_DATASOURCE_GROUPKEY:haibo}
+
+dubbo:
+  application:
+    name: order-center
+    qosEnable: true
+    qosPort: 22223
+    qosAcceptForeignIp: false
+  protocol:
+    name: dubbo
+    port: 26883
+    accesslog: true
+  provider:
+    scan-packages: >
+      com.jjy.ip.hiboos.order.api.service
+    version: 2.6.2
+  registry:
+    id: order-server
+    address: zookeeper://${ZOOKEEPER_HOST:10.99.196.156}:${ZOOKEEPER_PORT:2181}
+  consumer:
+    check: false
+    timeout: 6000
+
+prom:
+  ACTIVITYCODE: 7758521
+  COUPONTYPE: 211314
+  COUPONID: 996ICU
+  COUPONPPNO: 110

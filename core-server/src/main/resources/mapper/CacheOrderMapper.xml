@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CacheOrder">
+    <resultMap id="CacheOrderMap" type="CacheOrder">
+        <result property="channel" column="channel"/>
+        <result property="posId" column="pos_id"/>
+        <result property="cash" column="cash"/>
+        <result property="payId" column="pay_id"/>
+        <result property="parentCode" column="parent_code"/>
+        <result property="transactionId" column="transaction_id"/>
+        <result property="channelOrderId" column="channel_order_id"/>
+        <result property="orderType" column="order_type"/>
+        <result property="mktId" column="mkt_id"/>
+        <result property="drpId" column="drp_id"/>
+        <result property="jjyBillId" column="jjy_bill_id"/>
+        <result property="serialNo" column="serial_no"/>
+        <result property="jsonCache" column="json_cache"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="processDate" column="process_date"/>
+        <result property="processStatus" column="process_status"/>
+        <result property="failureReason" column="failure_reason"/>
+    </resultMap>
+
+    <sql id="table_name">
+        t_hb_cache_order
+    </sql>
+
+    <sql id="columns">
+        channel,
+        pos_id,
+        cash,
+        pay_id,
+        parent_code,
+        transaction_id,
+        channel_order_id,
+        order_type,
+        mkt_id,
+        drp_id,
+        jjy_bill_id,
+        serial_no,
+        json_cache,
+        create_time,
+        update_time,
+        process_date,
+        process_status,
+        failure_reason
+    </sql>
+
+    <sql id="values">
+        #{channel},
+        #{posId},
+        #{cash},
+        #{payId},
+        #{parentCode},
+        #{transactionId},
+        #{channelOrderId},
+        #{orderType},
+        #{mktId},
+        #{drpId},
+        #{jjyBillId},
+        #{serialNo},
+        #{jsonCache},
+        #{createTime},
+        #{updateTime},
+        #{processDate},
+        #{processStatus},
+        #{failureReason}
+    </sql>
+
+    <sql id="criteria">
+        <where>
+            <if test="channel != null">AND channel = #{channel}</if>
+            <if test="posId != null">AND pos_id = #{posId}</if>
+            <if test="cash != null">AND cash = #{cash}</if>
+            <if test="payId != null">AND pay_id = #{payId}</if>
+            <if test="parentCode != null">AND parent_code = #{parentCode}</if>
+            <if test="transactionId != null">AND transaction_id = #{transactionId}</if>
+            <if test="channelOrderId != null">AND channel_order_id = #{channelOrderId}</if>
+            <if test="orderType != null">AND order_type = #{orderType}</if>
+            <if test="mktId != null">AND mkt_id = #{mktId}</if>
+            <if test="drpId != null">AND drp_id = #{drpId}</if>
+            <if test="jjyBillId != null">AND jjy_bill_id = #{jjyBillId}</if>
+            <if test="serialNo != null">AND serial_no = #{serialNo}</if>
+            <if test="jsonCache != null">AND json_cache = #{jsonCache}</if>
+            <if test="createTime != null">AND create_time = #{createTime}</if>
+            <if test="updateTime != null">AND update_time = #{updateTime}</if>
+            <if test="processDate != null">AND process_date = #{processDate}</if>
+            <if test="processStatus != null">AND process_status = #{processStatus}</if>
+            <if test="failureReason != null">AND failure_reason = #{failureReason}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="CacheOrder">
+        INSERT INTO
+        <include refid="table_name"/>
+        (<include refid="columns"/>)
+        VALUES
+        (<include refid="values"/>)
+    </insert>
+
+    <insert id="creates" parameterType="CacheOrder">
+        INSERT INTO
+        <include refid="table_name"/>
+        (<include refid="columns"/>)
+        VALUES
+        <foreach collection="list" item="i" index="index" separator=",">
+            (
+            #{i.channel},
+            #{i.posId},
+            #{i.cash},
+            #{i.payId},
+            #{i.parentCode},
+            #{i.transactionId},
+            #{i.channelOrderId},
+            #{i.orderType},
+            #{i.mktId},
+            #{i.drpId},
+            #{i.jjyBillId},
+            #{i.serialNo},
+            #{i.jsonCache},
+            #{i.createTime},
+            #{i.updateTime},
+            #{i.processDate},
+            #{i.processStatus},
+            #{i.failureReason},
+            )
+        </foreach>
+    </insert>
+
+    <select id="findByBaiduShopId" parameterType="map" resultMap="CacheOrderMap">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        <include refid="table_name"/>
+        <where>
+            <if test="processStatus != null">AND process_status = #{processStatus}</if>
+            <if test="drp_idList != null">
+                AND mkt_id IN
+                <foreach collection="drp_idList" item="drp_id" open="(" separator="," close=")">
+                    #{drp_id, jdbcType=VARCHAR}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findByChannelOrderIds" parameterType="map" resultMap="CacheOrderMap">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        <include refid="table_name"/>
+        <where>
+            <if test="orderType != null">AND order_type = #{orderType}</if>
+            <if test="processStatus != null">AND process_status = #{processStatus}</if>
+            <if test="channelOrderIdList != null">
+                AND channel_order_id IN
+                <foreach collection="channelOrderIdList" item="channel_order_id" open="(" separator="," close=")">
+                    #{channel_order_id, jdbcType=VARCHAR}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="largestSerialNo" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        max(serial_no)
+        FROM
+        <include refid="table_name"/>
+        <where>
+            <if test="mktId != null">AND mkt_id = #{mktId}</if>
+            <if test="processDate != null">AND process_date = #{processDate}</if>
+        </where>
+    </select>
+
+    <update id="updateProcessStatus" parameterType="CacheOrder">
+        UPDATE
+        <include refid="table_name"/>
+        <set>
+            <trim suffix=", ">
+                serial_no = #{serialNo}
+            </trim>
+            <trim suffix=", ">
+                jjy_bill_id = #{jjyBillId}
+            </trim>
+            <trim suffix=", ">
+                process_status = #{processStatus}
+            </trim>
+            <trim suffix=", ">
+                failure_reason = #{failureReason}
+            </trim>
+            <trim suffix=", ">
+                update_time = #{updateTime}
+            </trim>
+        </set>
+        <where>
+            <if test="transactionId != null">AND transaction_id = #{transactionId}</if>
+            <if test="channelOrderId != null">AND channel_order_id = #{channelOrderId}</if>
+            <if test="orderType != null">AND order_type = #{orderType}</if>
+        </where>
+    </update>
+
+</mapper>

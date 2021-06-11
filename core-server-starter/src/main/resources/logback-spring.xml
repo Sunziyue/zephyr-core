@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2017 杭州端点网络科技有限公司
+  -->
+
+<configuration>
+    <springProperty scop="context" name="loggingPath" source="logging.path"/>
+    <property name="LOG_PATH" value="${loggingPath}"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/duodian_api.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/duodian_api.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- include ${FILE_LOG_PATTERN} -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!-- include CONSOLE appender -->
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+
+    <!-- 引入项目通用配置 -->
+    <include resource="config/logging/jetty-request-logback.xml"/>
+    <!-- root配置, 日志输出到console里 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

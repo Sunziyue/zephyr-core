@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.jjy.ip.hiboos.order.client.OrderApiAutoConfiguration

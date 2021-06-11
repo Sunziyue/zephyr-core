@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>xyz.sunziyue.zephyr</groupId>
+        <artifactId>zephyr-core</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>core-server</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>xyz.sunziyue.zephyr</groupId>
+            <artifactId>core-api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.terminus.common</groupId>
+                    <artifactId>terminus-spring-boot-starter-swagger</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jjy.ip.hiboos</groupId>
+            <artifactId>core-api-autoconfigure</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.terminus.boot.rpc</groupId>
+            <artifactId>dubbo-light-provider</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>io.terminus.common</groupId>-->
+<!--            <artifactId>terminus-spring-boot-starter-rocketmq</artifactId>-->
+<!--        </dependency>-->
+        <!--job start-->
+<!--        <dependency>-->
+<!--            <groupId>io.terminus.elastic.job</groupId>-->
+<!--            <artifactId>spring-boot-elastic-job-starter</artifactId>-->
+<!--        </dependency>-->
+        <!--job end-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.terminus.boot</groupId>
+            <artifactId>spring-boot-starter-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>7.0.0.jre8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jjy.interface.platform</groupId>
+            <artifactId>platform-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jjy.interface.platform</groupId>
+            <artifactId>dynamic-datasource</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>io.jjy.interface.platform</groupId>-->
+<!--            <artifactId>db-schedule-sdk</artifactId>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

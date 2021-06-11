@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TBpSaleposD">
+    <sql id="table_name">
+        t_mt_order_d
+    </sql>
+
+    <sql id="columns">
+        drpid, mktid, ymd,
+        bill, id, bill_dept, sale_by,
+        countid, deptid, shopid,
+        standards, unit_sale, flag_wp,
+        txm, name_short, newshop,
+        num_sale, price_sale, price_must,
+        price_vip, price_salechg, disc,
+        value, value_afterdisc, value_disc,
+        canrtn, isfree, isrtn,
+        promotion, bill_old, unit_piece,
+        piece, flag_split, flag_count,
+        flag_pack, no_pack, num_pack,
+        pro_class, stampqty, price_com,
+        stampexcept, coupon_bill, coupon_value,
+        coupon_value_disc, coupon_value_use, scancode
+    </sql>
+
+    <sql id="values">
+        #{drpid,jdbcType=CHAR}, #{mktid,jdbcType=CHAR}, #{ymd,jdbcType=INTEGER},
+        #{bill,jdbcType=CHAR}, #{id,jdbcType=INTEGER}, #{bill_dept,jdbcType=VARCHAR}, #{sale_by,jdbcType=CHAR},
+        #{countid,jdbcType=CHAR}, #{deptid,jdbcType=CHAR}, #{shopid,jdbcType=VARCHAR},
+        #{standards,jdbcType=VARCHAR}, #{unit_sale,jdbcType=VARCHAR}, #{flag_wp,jdbcType=CHAR},
+        #{txm,jdbcType=VARCHAR}, #{name_short,jdbcType=VARCHAR}, #{newshop,jdbcType=CHAR},
+        #{num_sale,jdbcType=DECIMAL}, #{price_sale,jdbcType=DECIMAL}, #{price_must,jdbcType=DECIMAL},
+        #{price_vip,jdbcType=DECIMAL}, #{price_salechg,jdbcType=DECIMAL}, #{disc,jdbcType=DECIMAL},
+        #{value,jdbcType=DECIMAL}, #{value_afterdisc,jdbcType=DECIMAL}, #{value_disc,jdbcType=DECIMAL},
+        #{canrtn,jdbcType=CHAR}, #{isfree,jdbcType=INTEGER}, #{isrtn,jdbcType=INTEGER},
+        #{promotion,jdbcType=CHAR}, #{bill_old,jdbcType=CHAR}, #{unit_piece,jdbcType=VARCHAR},
+        #{piece,jdbcType=INTEGER}, #{flag_split,jdbcType=CHAR}, #{flag_count,jdbcType=CHAR},
+        #{flag_pack,jdbcType=CHAR}, #{no_pack,jdbcType=VARCHAR}, #{num_pack,jdbcType=INTEGER},
+        #{pro_class,jdbcType=VARCHAR}, #{stampqty,jdbcType=INTEGER}, #{price_com,jdbcType=DECIMAL},
+        #{stampexcept,jdbcType=SMALLINT}, #{coupon_bill,jdbcType=VARCHAR}, #{coupon_value,jdbcType=DECIMAL},
+        #{coupon_value_disc,jdbcType=DECIMAL}, #{coupon_value_use,jdbcType=DECIMAL}, #{scancode,jdbcType=VARCHAR}
+    </sql>
+
+    <insert id="insert" parameterType="TBpSaleposD">
+        INSERT INTO
+        <include refid="table_name"/>
+        (<include refid="columns"/>)
+        VALUES
+        (<include refid="values"/>)
+    </insert>
+</mapper>
