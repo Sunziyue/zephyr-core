@@ -1,6 +1,7 @@
 package xyz.szy.zephyr.core.api.utils.sale;
 
-import io.terminus.common.utils.Arguments;
+
+import xyz.sunziyue.common.utils.Arguments;
 
 import java.math.BigDecimal;
 

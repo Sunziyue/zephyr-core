@@ -1,9 +1,9 @@
 package xyz.szy.zephyr.core.api.enums;
 
+import xyz.sunziyue.common.utils.Arguments;
 import xyz.szy.zephyr.core.api.exception.ChannelUnKnowException;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.terminus.common.utils.Arguments;
 
 import java.text.MessageFormat;
 
