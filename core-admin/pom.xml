@@ -22,16 +22,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.jiajiayue.o2o</groupId>
-            <artifactId>jiajiayue-common-logging</artifactId>
-        </dependency>
         <!--spring web container end-->
 
         <dependency>
             <groupId>xyz.sunziyue.zephyr</groupId>
-            <artifactId>zephyr-api-autoconfigure</artifactId>
+            <artifactId>core-api-autoconfigure</artifactId>
         </dependency>
     </dependencies>
 </project>

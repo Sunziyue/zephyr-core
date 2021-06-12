@@ -6,7 +6,7 @@ logging:
 
 spring:
   application:
-    name: order-admin-starter
+    name: zephyr-admin-starter
 
 server:
   context-path: /
@@ -19,15 +19,15 @@ security:
 terminus:
   swagger:
     enable: true
-    title: "HIBOOS_ORDER_API"
-    group-name: "HIBOOS"
+    title: "ZEPHYR_CORE_API"
+    group-name: "ZEPHYR"
     version: "1.0-SNAPSHOT"
 
 dubbo:
   application:
-    name: order-admin-dubbo
+    name: zephyr-core-dubbo
   registry:
-    id: order-admin
+    id: core-admin
     address: zookeeper://${ZOOKEEPER_HOST:10.99.196.156}:${ZOOKEEPER_PORT:2181}
   provider:
     retries: 0

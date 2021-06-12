@@ -76,18 +76,6 @@
                 <artifactId>core-admin</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>com.jjy.ip.hiboos</groupId>
-                <artifactId>core-api-autoconfigure</artifactId>
-                <version>${project.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.terminus.common</groupId>
-                        <artifactId>terminus-spring-boot-starter-swagger</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

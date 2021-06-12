@@ -1,10 +1,15 @@
 logging:
-  path: ${user.home}/logs/jjy
-  level.root: INFO
-  level.io.jjy: ${JJY_LOG_LEVEL:INFO}
-  level.io.terminus: ${TERMINUS_LOG_LEVEL:INFO}
+  level.root: info
+  config: classpath:logback-spring.xml
+  file:
+#    保存到项目目录下
+#    path: ${user.dir}/logs/zephyr
+#    保存到用户目录下
+    path: ${user.home}/logs/zephyr
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: order-center
   datasource:
@@ -12,41 +17,42 @@ spring:
     url: jdbc:mysql://${MYSQL_HOST:192.168.199.191}:${MYSQL_PORT:3306}/${MYSQL_DATABASES:sap-drp-uat}?useUnicode=true&characterEncoding=UTF8&useSsl=false
     username: ${MYSQL_USERNAME:sap}
     password: ${MYSQL_PASSWORD:sap@#321}
-    type: org.apache.tomcat.jdbc.pool.DataSource
-    tomcat:
-      # 空闲连接检查
-      time-between-eviction-runs-millis: 6000
-      validation-query: SELECT 1
-      # 检查空闲连接是否收回
-      test-while-idle: true
-      # 从连接池取出连接进行检查
-      test-on-borrow: true
-      # 归还检查，关闭就行
-      test-on-return: false
-      initial-size: 5
-      min-idle: 10
-      max-active: 50
-      max-wait: 60000
-      # 配置一个连接在池中最小生存的时间
-      min-evictable-idle-time-millis: 300000
+    type: com.zaxxer.hikari.HikariDataSource
+    # Hikari 连接池配置
+    # 最小空闲连接数量
+    hikari:
+      minimum-idle: 5
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 180000
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 10
+      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      auto-commit: true
+      # 连接池名称
+      pool-name: MyHikariCP
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      max-lifetime: 1800000
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
 
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
   type-aliases-package: >
-    com.jjy.ip.hiboos.order.server.model
+    xyz.szy.zephyr.core.server.model
 
 terminus:
   rocketmq:
     nameServerAddress: ${ROCKETMQ_NAMESRV_HOST:10.99.242.43}:${ROCKETMQ_NAMESRV_PORT:9876}
-    producerGroup: ${MQ_GROUP:order-producer}
+    producerGroup: ${MQ_GROUP:zephyr-producer}
 
 dynamicDataSource:
   provider: ${DYNAMIC_DATASOURCE_PROVIDER:io.jjy.platform.common.datasource.provider.ConfigurableDataSourceProvider}
-  groupKey: ${DYNAMIC_DATASOURCE_GROUPKEY:haibo}
+  groupKey: ${DYNAMIC_DATASOURCE_GROUPKEY:zephyr}
 
 dubbo:
   application:
-    name: order-center
+    name: core-center
     qosEnable: true
     qosPort: 22223
     qosAcceptForeignIp: false
@@ -56,17 +62,11 @@ dubbo:
     accesslog: true
   provider:
     scan-packages: >
-      com.jjy.ip.hiboos.order.api.service
+      xyz.szy.zephyr.core.api.service
     version: 2.6.2
   registry:
-    id: order-server
+    id: core-server
     address: zookeeper://${ZOOKEEPER_HOST:10.99.196.156}:${ZOOKEEPER_PORT:2181}
   consumer:
     check: false
     timeout: 6000
-
-prom:
-  ACTIVITYCODE: 7758521
-  COUPONTYPE: 211314
-  COUPONID: 996ICU
-  COUPONPPNO: 110

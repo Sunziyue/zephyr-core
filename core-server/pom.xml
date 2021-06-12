@@ -24,25 +24,15 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jjy.ip.hiboos</groupId>
-            <artifactId>core-api-autoconfigure</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>io.terminus.boot.rpc</groupId>
             <artifactId>dubbo-light-provider</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>io.terminus.common</groupId>-->
-<!--            <artifactId>terminus-spring-boot-starter-rocketmq</artifactId>-->
-<!--        </dependency>-->
-        <!--job start-->
-<!--        <dependency>-->
-<!--            <groupId>io.terminus.elastic.job</groupId>-->
-<!--            <artifactId>spring-boot-elastic-job-starter</artifactId>-->
-<!--        </dependency>-->
-        <!--job end-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,27 +48,6 @@
             <groupId>io.terminus.boot</groupId>
             <artifactId>spring-boot-starter-mybatis</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <version>7.0.0.jre8</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jjy.interface.platform</groupId>
-            <artifactId>platform-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jjy.interface.platform</groupId>
-            <artifactId>dynamic-datasource</artifactId>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>io.jjy.interface.platform</groupId>-->
-<!--            <artifactId>db-schedule-sdk</artifactId>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
