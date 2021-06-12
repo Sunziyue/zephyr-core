@@ -1,8 +1,11 @@
 logging:
-  path: ${user.home}/logs/jjy
-  level.root: INFO
-  level.io.jjy: ${JJY_LOG_LEVEL:INFO}
-  level.io.terminus: ${TERMINUS_LOG_LEVEL:INFO}
+  level.root: info
+  config: classpath:logback-spring.xml
+  file:
+    #    保存到项目目录下
+    #    path: ${user.dir}/logs/zephyr
+    #    保存到用户目录下
+    path: ${user.home}/logs/zephyr
 
 spring:
   application:
@@ -16,12 +19,11 @@ security:
   basic:
     enabled: false
 
-terminus:
-  swagger:
-    enable: true
-    title: "ZEPHYR_CORE_API"
-    group-name: "ZEPHYR"
-    version: "1.0-SNAPSHOT"
+swagger:
+  enable: true
+  title: "ZEPHYR_CORE_API"
+  group-name: "ZEPHYR"
+  version: "1.0-SNAPSHOT"
 
 dubbo:
   application:
