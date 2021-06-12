@@ -14,13 +14,13 @@
     <dependencies>
         <!--swagger start-->
         <dependency>
-            <groupId>io.terminus.common</groupId>
-            <artifactId>terminus-spring-boot-starter-swagger</artifactId>
+            <groupId>xyz.sunziyue</groupId>
+            <artifactId>zephyr-spring-boot-swagger-starter</artifactId>
         </dependency>
         <!--swagger end-->
         <dependency>
-            <groupId>io.terminus</groupId>
-            <artifactId>terminus-common</artifactId>
+            <groupId>xyz.sunziyue</groupId>
+            <artifactId>zephyr-spring-boot-common</artifactId>
         </dependency>
     </dependencies>
 </project>

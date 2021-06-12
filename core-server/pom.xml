@@ -17,8 +17,8 @@
             <artifactId>core-api</artifactId>
             <exclusions>
                 <exclusion>
-                    <groupId>io.terminus.common</groupId>
-                    <artifactId>terminus-spring-boot-starter-swagger</artifactId>
+                    <groupId>xyz.sunziyue</groupId>
+                    <artifactId>zephyr-spring-boot-swagger-starter</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -45,8 +45,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.terminus.boot</groupId>
-            <artifactId>spring-boot-starter-mybatis</artifactId>
+            <groupId>xyz.sunziyue</groupId>
+            <artifactId>zephyr-spring-boot-mybatis-starter</artifactId>
         </dependency>
 
         <dependency>
