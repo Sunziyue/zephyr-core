@@ -1,12 +1,12 @@
 package xyz.szy.zephyr.core.api.client;
 
-import io.terminus.boot.rpc.dubbo.light.consumer.ServiceSubscriber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import xyz.szy.zephyr.core.api.service.CacheOrderService;
 import xyz.szy.zephyr.core.api.service.ProcessOrderService;
+import xyz.szy.zephyr.dubbo.consumer.ServiceSubscriber;
 
 @Configuration
 public class CoreApiAutoConfiguration {

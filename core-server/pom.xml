@@ -24,8 +24,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.terminus.boot.rpc</groupId>
-            <artifactId>dubbo-light-provider</artifactId>
+            <groupId>xyz.sunziyue</groupId>
+            <artifactId>dubbo-provider</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>log4j</groupId>
@@ -60,6 +60,11 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>xyz.sunziyue</groupId>-->
+<!--            <artifactId>zephyr-spring-boot-elastic-job-starter</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
 </project>

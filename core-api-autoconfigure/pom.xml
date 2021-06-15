@@ -16,9 +16,10 @@
             <groupId>xyz.sunziyue.zephyr</groupId>
             <artifactId>core-api</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>io.terminus.boot.rpc</groupId>
-            <artifactId>dubbo-light-consumer</artifactId>
+            <groupId>xyz.sunziyue</groupId>
+            <artifactId>dubbo-consumer</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>log4j</groupId>
@@ -26,6 +27,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
     </dependencies>
 
 </project>

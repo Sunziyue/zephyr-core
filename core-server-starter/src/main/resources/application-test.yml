@@ -70,3 +70,17 @@ dubbo:
   consumer:
     check: false
     timeout: 6000
+
+#elastic:
+#  job:
+#    zk:
+#      serverLists: ${ZOOKEEPER_HOST:10.99.196.156}:${ZOOKEEPER_PORT:2181}
+#      namespace: test123fgh
+#
+#    JobName:
+#      cron: 0/5 * * * * ?
+#      overwrite: true
+#      failover: true
+#      misfire: true
+#      shardingTotalCount: 3
+#      shardingItemParameters: 0=3503,1=3526,2=1017
