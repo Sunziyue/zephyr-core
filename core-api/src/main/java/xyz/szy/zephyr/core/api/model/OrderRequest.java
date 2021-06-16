@@ -23,7 +23,7 @@ public class OrderRequest implements Serializable {
     @ApiModelProperty("应用标识")
     private String appId;
 
-    @ApiModelProperty("时间戳（毫秒）")
+    @ApiModelProperty(value = "时间戳（毫秒）",example = "123456798")
     private Long timestamp;
 
     @ApiModelProperty("MD5 签名数据")
