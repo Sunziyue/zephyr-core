@@ -12,6 +12,7 @@ public class UpUtil {
     /**
      * 初始化向海博系统发送的信息
      * @param requestDto
+     * @param appId
      * @return
      */
     private static String initParams(RequestDto requestDto, String appId) {
@@ -20,11 +21,11 @@ public class UpUtil {
         params.put("timestamp", requestDto.getTimestamp());
         params.put("sign", requestDto.getSign());
         params.put("body", requestDto.getBody());
-        StringBuilder requestparams = new StringBuilder();
+        StringBuilder requestParams = new StringBuilder();
         for (Map.Entry<String, Object> map : params.entrySet()) {
-            requestparams.append(map.getKey()).append("=").append(map.getValue()).append("&");
+            requestParams.append(map.getKey()).append("=").append(map.getValue()).append("&");
         }
-        return requestparams.substring(0, requestparams.length() - 1);
+        return requestParams.substring(0, requestParams.length() - 1);
     }
 
     public static String sendPost(String baseUrl, String url, String appId, String appSecret, Map<String,Object> body) {

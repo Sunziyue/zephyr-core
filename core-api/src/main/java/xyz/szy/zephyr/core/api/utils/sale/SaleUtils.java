@@ -1,7 +1,7 @@
 package xyz.szy.zephyr.core.api.utils.sale;
 
 
-import xyz.sunziyue.common.utils.Arguments;
+import xyz.szy.common.utils.Arguments;
 
 import java.math.BigDecimal;
 
