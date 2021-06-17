@@ -3,9 +3,9 @@ logging:
   config: classpath:logback-spring.xml
   file:
     #    保存到项目目录下
-    #    path: ${user.dir}/logs/zephyr
+    path: ${user.dir}/logs/zephyr
     #    保存到用户目录下
-    path: ${user.home}/logs/zephyr
+    #    path: ${user.home}/logs/zephyr
 
 spring:
   application:
